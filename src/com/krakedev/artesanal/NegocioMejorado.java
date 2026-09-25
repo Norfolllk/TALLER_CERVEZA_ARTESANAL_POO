@@ -9,7 +9,16 @@ public class NegocioMejorado {
 	private int ultimoCodigo = 100;
 
 	public NegocioMejorado() {
-		this.maquinas = new ArrayList<Maquina>();
+		maquinas = new ArrayList<Maquina>();
+		clientes = new ArrayList<Cliente>();
+	}
+
+	public ArrayList<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(ArrayList<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 	
 	public ArrayList<Maquina> getMaquinas() {
