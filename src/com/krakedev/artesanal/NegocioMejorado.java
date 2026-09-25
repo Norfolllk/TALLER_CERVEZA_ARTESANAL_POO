@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class NegocioMejorado {
 
 	private ArrayList<Maquina> maquinas;
+	private ArrayList<Cliente> clientes;
+	private int ultimoCodigo = 100;
 
 	public NegocioMejorado() {
 		this.maquinas = new ArrayList<Maquina>();
 	}
-
+	
 	public ArrayList<Maquina> getMaquinas() {
 		return maquinas;
 	}
@@ -51,5 +53,12 @@ public class NegocioMejorado {
 			}
 		}
 		return null;
+	}
+	
+	public void registrarCliente(String nombre, String cedula) {
+		Cliente nuevo = new Cliente(nombre, cedula);
+		nuevo.setCodigo(ultimoCodigo);
+		ultimoCodigo++;
+		clientes.add(nuevo);
 	}
 }
