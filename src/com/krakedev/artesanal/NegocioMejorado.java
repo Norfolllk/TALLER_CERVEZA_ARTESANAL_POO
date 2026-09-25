@@ -70,4 +70,36 @@ public class NegocioMejorado {
 		ultimoCodigo++;
 		clientes.add(nuevo);
 	}
+	
+	public Cliente buscarClientePorCedula(String cedula) {
+		for (int i = 0; i < clientes.size(); i++) {
+			Cliente cliente = clientes.get(i);
+			if (cliente.getCedula().equals(cedula)) {
+				return cliente;
+			}
+		}
+		return null;
+	}
+
+	public Cliente buscarClientePorCodigo(int codigo) {
+		for (int i = 0; i < clientes.size(); i++) {
+			Cliente cliente = clientes.get(i);
+			if (cliente.getCodigo() == codigo) {
+				return cliente;
+			}
+		}
+		return null;
+	}
+	
+	public void consumirCerveza(int codigoCliente, String codigoMaquina, double cantidad) {
+		Maquina maquina = recuperarMaquina(codigoMaquina);
+		Cliente cliente = buscarClientePorCodigo(codigoCliente);
+		double valor = maquina.servirCerveza(cantidad);
+		registrarConsumo(cliente, valor);
+	}
+
+	public void registrarConsumo(Cliente cliente, double valor) {
+		cliente.setTotalConsumido(cliente.getTotalConsumido() + valor);
+	}
+	
 }
