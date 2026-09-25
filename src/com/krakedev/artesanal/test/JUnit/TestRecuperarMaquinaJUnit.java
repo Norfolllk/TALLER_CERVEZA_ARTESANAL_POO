@@ -24,7 +24,7 @@ public class TestRecuperarMaquinaJUnit {
 		NegocioMejorado negocio = new NegocioMejorado();
 		Maquina existente = new Maquina("M-50", "Pilsener", "Rubia", 0.02);
 		negocio.getMaquinas().add(existente);
-		Maquina encontrada = negocio.recuperarMaquinas("M-50");
+		Maquina encontrada = negocio.recuperarMaquina("M-50");
 		assertNotNull(encontrada);
 		assertEquals("Pilsener", encontrada.getNombreCerveza());
 	}
@@ -32,7 +32,19 @@ public class TestRecuperarMaquinaJUnit {
 	@Test
 	public void testRecuperarMaquinaInexistente() {
 		NegocioMejorado negocio = new NegocioMejorado();
-		Maquina encontrada = negocio.recuperarMaquinas("M-99");
+		Maquina encontrada = negocio.recuperarMaquina("M-99");
 		assertNull(encontrada);
+	}
+	
+	@Test
+	public void testRecuperarMaquinaDetectaDuplicado() {
+		NegocioMejorado negocio = new NegocioMejorado();
+		Maquina existente = new Maquina("M-50", "Pilsener", "Rubia", 0.02);
+		negocio.getMaquinas().add(existente);
+
+		Maquina duplicada = negocio.recuperarMaquina("M-50");
+
+		assertNotNull(duplicada);
+		assertEquals(1, negocio.getMaquinas().size());
 	}
 }

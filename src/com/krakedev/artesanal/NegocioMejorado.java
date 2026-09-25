@@ -26,9 +26,14 @@ public class NegocioMejorado {
 	
 	public boolean agregarMaquina(String nombreCerveza, String descripcion, double precioPorMl) {
 		String codigo = generarCodigo();
-		Maquina nueva = new Maquina(codigo, nombreCerveza, descripcion, precioPorMl);
-		maquinas.add(nueva);
-		return true;
+		Maquina existente = recuperarMaquina(codigo);
+		if (existente == null) {
+			Maquina nueva = new Maquina(codigo, nombreCerveza, descripcion, precioPorMl);
+			maquinas.add(nueva);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void cargarMaquinas() {
@@ -38,7 +43,7 @@ public class NegocioMejorado {
 		}
 	}
 	
-	public Maquina recuperarMaquinas(String codigo) {
+	public Maquina recuperarMaquina(String codigo) {
 		for (int i = 0; i < maquinas.size(); i++) {
 			Maquina maquina = maquinas.get(i);
 			if (maquina.getCodigo().equals(codigo)) {
